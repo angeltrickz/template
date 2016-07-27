@@ -37,6 +37,25 @@
         
             //Adding a light
             var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
+
+ var sphere2 = BABYLON.Mesh.CreateSphere("sphere1", 16, 2000, scene);
+            
+           var materialSphere2 = new BABYLON.StandardMaterial("texture3", scene);
+
+
+
+
+materialSphere2.diffuseTexture = new BABYLON.VideoTexture("video",
+["textures/sky.mp4"], scene, true);
+         materialSphere2.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+         materialSphere2.reflectionTexture = materialSphere2.diffuseTexture;
+             materialSphere2.reflectionTexture.coordinatesMode = BABYLON.Texture.SPHERICAL_MODE;
+
+
+      sphere2.material = materialSphere2;
+
+       materialSphere2.backFaceCulling = false;
+
         /*
             //Adding an Arc Rotate Camera
             var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
@@ -77,7 +96,7 @@
                 // Set the target of the camera to the first imported mesh
                 camera.target = newMeshes[0];
             });
-
+/*
 
             window.addEventListener("deviceorientation", moveBall);
 function moveBall(evt) {
@@ -87,7 +106,8 @@ function moveBall(evt) {
 
     }
 }
-        
+     
+     */   
             // Move the light with the camera
             scene.registerBeforeRender(function () {
                 light.position = camera.position;
