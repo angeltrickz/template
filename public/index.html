@@ -59,9 +59,8 @@
             window.addEventListener("deviceorientation", moveBall);
 function moveBall(evt) {
     if (evt.alpha < 5 || evt.alpha > 355) {
-        camera.position.z += 0.1;
-        console.log(evt.alpha);
-        alert(evt.alpha);
+        camera.position.z = evt.alpha;
+
 
     }
 }
