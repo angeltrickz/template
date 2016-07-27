@@ -138,7 +138,12 @@ if (window.DeviceOrientationEvent) {
 	camera.attachControl(canvas, true);
 
 function deviceOrientationHandler(lr,fb,dr){
-cameraRotation.y = lr
+	scene.registerBeforeRender(function () {
+		camera.rotation.x = lr
+		camera.rotation.y = lr
+		camera.rotation.z = lr
+	});
+
 };
 
 
@@ -380,7 +385,7 @@ function moveBall(evt) {
         }
         
         var scene = createScene();
-
+        engine.switchFullscreen(true);
         engine.runRenderLoop(function () {
             scene.render();
         });
