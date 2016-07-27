@@ -5,10 +5,10 @@
 
         <title>Babylon.js sample code</title>
         <!-- Babylon.js -->
-        <script src="http://www.babylonjs.com/hand.minified-1.2.js"></script>
-        <script src="http://www.babylonjs.com/cannon.js"></script>
-        <script src="http://www.babylonjs.com/oimo.js"></script>
-        <script src="http://www.babylonjs.com/babylon.js"></script>
+        <script src="javascripts/hand.minified-1.2.js"></script>
+        <script src="javascripts/cannon.js"></script>
+        <script src="javascripts/oimo.js"></script>
+        <script src="javascripts/babylon.js"></script>
         <style>
             html, body {
                 overflow: hidden;
@@ -38,7 +38,7 @@
             var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
         
             //Adding an Arc Rotate Camera
-            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 50, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
         
             // The first parameter can be used to specify which mesh to import. Here we import all meshes
