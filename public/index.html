@@ -34,6 +34,12 @@
 
         var createScene = function () {
             var scene = new BABYLON.Scene(engine);
+
+            scene.enablePhysics(new BABYLON.Vector3(0, -10, 0), new BABYLON.CannonJSPlugin());
+
+             scene.gravity = new BABYLON.Vector3(0, -0.98, 0);
+  // Enable collisions globally. 
+  scene.collisionsEnabled = true;
         
             //Adding a light
             var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene); 
@@ -78,7 +84,7 @@ groundMaterialz.diffuseTexture.uScale = 100.0;
   groundMaterial.diffuseTexture.vScale = 100.0;
   ground.material = groundMaterial; 
   ground.checkCollisions = true;
-  ground.position.y = -6;
+  ground.position.y = -4;
 
 
 
@@ -139,6 +145,101 @@ plane.physicsImpostor = new BABYLON.PhysicsImpostor(plane, BABYLON.PhysicsImpost
                 // Set the target of the camera to the first imported mesh
                 camera.target = newMeshes[0];
             });
+
+
+        // Trees
+        BABYLON.SceneLoader.ImportMesh("", "", "mapa/arbol2.babylon", scene, function (newMeshes) {
+            var arbolseco = newMeshes[0];
+            newMeshes[0].material.opacityTexture = null;
+            newMeshes[0].material.backFaceCulling = false;
+            newMeshes[0].isVisible = false;
+            newMeshes[0].position.y = ground.getHeightAtCoordinates(0, 0); // Getting height from ground object
+            
+            
+
+            shadowGenerator.getShadowMap().renderList.push(newMeshes[0]);
+            var range = 1000;
+            var count = 500;
+            for (var index = 0; index < count; index++) {
+                var newInstance = newMeshes[0].createInstance("i" + index);
+                var x = range / 2 - Math.random() * range;
+                var z = range / 2 - Math.random() * range;
+
+                var y = ground.getHeightAtCoordinates(x, z); // Getting height from ground object
+
+                newInstance.position = new BABYLON.Vector3(x, y, z);
+                newInstance.physicsImpostor = new BABYLON.PhysicsImpostor(newInstance, BABYLON.PhysicsImpostor.BoxImpostor, {   mass: 500,
+  friction: 100,
+  restitution: 0 }, scene); 
+            newInstance.checkCollisions = true;
+            newInstance.collisionsEnabled = true;
+
+                newInstance.rotate(BABYLON.Axis.Y, Math.random() * Math.PI * 2, BABYLON.Space.WORLD);
+
+                var scale = 0.5 + Math.random() * 2;
+                newInstance.scaling.addInPlace(new BABYLON.Vector3(scale, scale, scale));
+
+                shadowGenerator.getShadowMap().renderList.push(newInstance);
+            }
+            shadowGenerator.getShadowMap().refreshRate = 0; // We need to compute it just once
+            shadowGenerator.usePoissonSampling = true;
+
+           
+        });
+
+         ///arbol2//
+
+            BABYLON.SceneLoader.ImportMesh("", "", "mapa/arbol.babylon", scene, function (newMeshes, particleSystems, skeletons) {
+   var arbol1 = newMeshes[0];
+
+});
+   // Shadows
+        var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+
+        // Trees
+        BABYLON.SceneLoader.ImportMesh("", "", "mapa/arbol2.babylon", scene, function (newMeshes) {
+            var arbolseco = newMeshes[0];
+            newMeshes[0].material.opacityTexture = null;
+            newMeshes[0].material.backFaceCulling = false;
+            newMeshes[0].isVisible = false;
+            newMeshes[0].position.y = ground.getHeightAtCoordinates(0, 0); // Getting height from ground object
+            
+            
+
+            shadowGenerator.getShadowMap().renderList.push(newMeshes[0]);
+            var range = 300;
+            var count = 300;
+            for (var index = 0; index < count; index++) {
+                var newInstance = newMeshes[0].createInstance("i" + index);
+                var x = range / 2 - Math.random() * range;
+                var z = range / 2 - Math.random() * range;
+
+                var y = ground.getHeightAtCoordinates(x, z); // Getting height from ground object
+
+                newInstance.position = new BABYLON.Vector3(x, y, z);
+                newInstance.physicsImpostor = new BABYLON.PhysicsImpostor(newInstance, BABYLON.PhysicsImpostor.BoxImpostor, {   mass: 500,
+  friction: 100,
+  restitution: 0 }, scene); 
+            newInstance.checkCollisions = true;
+            newInstance.collisionsEnabled = true;
+
+                newInstance.rotate(BABYLON.Axis.Y, Math.random() * Math.PI * 2, BABYLON.Space.WORLD);
+
+                var scale = 0.5 + Math.random() * 2;
+                newInstance.scaling.addInPlace(new BABYLON.Vector3(scale, scale, scale));
+
+                shadowGenerator.getShadowMap().renderList.push(newInstance);
+            }
+            shadowGenerator.getShadowMap().refreshRate = 0; // We need to compute it just once
+            shadowGenerator.usePoissonSampling = true;
+
+            // Collisions
+            freeCamera.checkCollisions = true;
+    freeCamera.applyGravity = true;
+    freeCamera.collisionsEnabled = true;
+        });
+        //arbol2//
+
 /*
 
             window.addEventListener("deviceorientation", moveBall);
