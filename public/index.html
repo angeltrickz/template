@@ -36,10 +36,16 @@
         
             //Adding a light
             var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
-        
+        /*
             //Adding an Arc Rotate Camera
             var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
+*/
+            var camera = new BABYLON.WebVRFreeCamera("Camera", new BABYLON.Vector3(0, 90, -50), scene, true);
+  camera.attachControl(canvas, true);
+scene.activeCamera = camera;
+camera.applyGravity = true;
+ camera.position.y = -1;
         
             // The first parameter can be used to specify which mesh to import. Here we import all meshes
             BABYLON.SceneLoader.ImportMesh("", "scenes/", "cubo.babylon", scene, function (newMeshes) {
