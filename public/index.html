@@ -28,6 +28,7 @@
 <body>
     <canvas id="renderCanvas"></canvas>
     <script>
+
         var canvas = document.getElementById("renderCanvas");
         var engine = new BABYLON.Engine(canvas, true);
 
@@ -79,6 +80,13 @@ camera.applyGravity = true;
         window.addEventListener("resize", function () {
             engine.resize();
         });
+
+
+
+
+           canvas.addEventListener("click", function() {
+                engine.switchFullscreen(true);
+            });
     </script>
 </body>
 </html>
