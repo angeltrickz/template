@@ -42,7 +42,7 @@
             var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
 */
-    var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 85, new BABYLON.Vector3.Zero(), scene);
+    var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 30, new BABYLON.Vector3.Zero(), scene);
 	camera.setCameraRigMode(BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL,  { interaxialDistance: 0.0637});
 	camera.attachControl(canvas, true);
 
