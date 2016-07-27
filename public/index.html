@@ -131,17 +131,15 @@ if (window.DeviceOrientationEvent) {
   console.log(err);
 }
 
-function deviceOrientationHandler(lr,fb,dr){
-alert(lr)
-alert(fb)
-alert(dr)
-};
 
     var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 30, new BABYLON.Vector3.Zero(), scene);
 
 	camera.setCameraRigMode(BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL,  { interaxialDistance: 0.0637});
 	camera.attachControl(canvas, true);
 
+function deviceOrientationHandler(lr,fb,dr){
+cameraRotation.y = lr
+};
 
 
 /*
