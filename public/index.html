@@ -26,56 +26,19 @@
         </style>
     </head>
 <body>
-
-<div id="moAccel"></div>
-    <div id="moAccelGrav">a</div>
-    <div id="moRotation">b</div>
-    <div id="moInterval">c</div>
-    <canvas id="renderCanvas">d</canvas>
-    
-
+    <canvas id="renderCanvas"></canvas>
     <script>
         var canvas = document.getElementById("renderCanvas");
         var engine = new BABYLON.Engine(canvas, true);
 
         var createScene = function () {
             var scene = new BABYLON.Scene(engine);
-
-
-            function deviceMotionHandler(eventData) {
-  var info, xyz = "[X, Y, Z]";
-
-  // Grab the acceleration from the results
-  var acceleration = eventData.acceleration;
-  info = xyz.replace("X", acceleration.x);
-  info = info.replace("Y", acceleration.y);
-  info = info.replace("Z", acceleration.z);
-  document.getElementById("moAccel").innerHTML = info;
-
-  // Grab the acceleration including gravity from the results
-  acceleration = eventData.accelerationIncludingGravity;
-  info = xyz.replace("X", acceleration.x);
-  info = info.replace("Y", acceleration.y);
-  info = info.replace("Z", acceleration.z);
-  document.getElementById("moAccelGrav").innerHTML = info;
-
-  // Grab the rotation rate from the results
-  var rotation = eventData.rotationRate;
-  info = xyz.replace("X", rotation.alpha);
-  info = info.replace("Y", rotation.beta);
-  info = info.replace("Z", rotation.gamma);
-  document.getElementById("moRotation").innerHTML = info;
-
-  // // Grab the refresh interval from the results
-  info = eventData.interval;
-  document.getElementById("moInterval").innerHTML = info;       
-}
         
             //Adding a light
             var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
         
             //Adding an Arc Rotate Camera
-            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 50, BABYLON.Vector3.Zero(), scene);
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
         
             // The first parameter can be used to specify which mesh to import. Here we import all meshes
@@ -87,6 +50,14 @@
             // Move the light with the camera
             scene.registerBeforeRender(function () {
                 light.position = camera.position;
+                window.ondevicemotion = function(event) {  
+    var accelerationX = event.accelerationIncludingGravity.x;  
+    var accelerationY = event.accelerationIncludingGravity.y;  
+    var accelerationZ = event.accelerationIncludingGravity.z; 
+
+    console.log(accelerationX) ;
+    console.log(accelerationY) ;
+}  
             });
         
             return scene;
