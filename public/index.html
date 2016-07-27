@@ -42,9 +42,32 @@
             var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
 */
+/*
     var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 30, new BABYLON.Vector3.Zero(), scene);
+
 	camera.setCameraRigMode(BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL,  { interaxialDistance: 0.0637});
 	camera.attachControl(canvas, true);
+*/
+
+   var camera = new BABYLON.VRDeviceOrientationFreeCamera("camera1", new BABYLON.Vector3(0, 0, 0), scene);
+	// console.log(camera);
+	// camera.cameraDirection = new BABYLON.Vector3(0, 0, 0); 
+    camera.attachControl(canvas, true);
+	camera.noRotationConstraint = true;
+	camera.position = new BABYLON.Vector3(0, .5, -5);
+	// camera.rotation = new BABYLON.Vector3(0, 0, 0);
+	// camera.setTarget(BABYLON.Vector3.Zero());
+	// camera.upVector = new BABYLON.Vector3(0, 0, .5);
+
+	// console.log(BABYLON.VRCameraMetrics.GetDefault());
+
+	// console.log(camera.inputs.camera.inputs.camera.inputs.camera.inputs.camera.inputs.camera.inputs.camera);
+	// camera.inputs.camera.cameraRotation = new BABYLON.Vector2(-.5, 0);
+	// camera.inputs.camera.rotation = new BABYLON.Vector3(.707, 0, 0);
+
+	console.log(camera.inputs.attached.deviceOrientation);
+	// camera.inputs.attached.deviceOrientation._screenQuaternion.x += .707;
+	camera.inputs.attached.deviceOrientation._constantTranform.x = 0;
 
 
 
