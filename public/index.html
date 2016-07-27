@@ -110,13 +110,41 @@ plane.physicsImpostor = new BABYLON.PhysicsImpostor(plane, BABYLON.PhysicsImpost
             var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
 */
-/*
+
+if (window.DeviceOrientationEvent) {
+ 
+  // Listen for the deviceorientation event and handle the raw data
+  window.addEventListener('deviceorientation', function(eventData) {
+    // gamma is the left-to-right tilt in degrees, where right is positive
+    var tiltLR = eventData.gamma;
+
+    // beta is the front-to-back tilt in degrees, where front is positive
+    var tiltFB = eventData.beta;
+
+    // alpha is the compass direction the device is facing in degrees
+    var dir = eventData.alpha
+
+    // call our orientation event handler
+    deviceOrientationHandler(tiltLR, tiltFB, dir);
+  }, false);
+} else {
+  console.log(err);
+}
+
+function deviceOrientationHandler(lr,fb,dr){
+alert(lr)
+alert(fb)
+alert(dr)
+};
+
     var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 30, new BABYLON.Vector3.Zero(), scene);
 
 	camera.setCameraRigMode(BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL,  { interaxialDistance: 0.0637});
 	camera.attachControl(canvas, true);
-*/
 
+
+
+/*
    var camera = new BABYLON.VRDeviceOrientationFreeCamera("camera1", new BABYLON.Vector3(0, 0, 0), scene);
 	// console.log(camera);
 	// camera.cameraDirection = new BABYLON.Vector3(0, 0, 0); 
@@ -142,6 +170,8 @@ plane.physicsImpostor = new BABYLON.PhysicsImpostor(plane, BABYLON.PhysicsImpost
 
 camera.inputs.attached.VRDeviceOrientation._deviceOrientationHandler = onOrientationEvent.bind(camera.inputs.attached.VRDeviceOrientation);
 camera.inputs.attached.VRDeviceOrientation.attachControl(canvas);
+
+*/
 /*
  var invView = new BABYLON.Matrix();
     camera.getViewMatrix().invertToRef(invView);
