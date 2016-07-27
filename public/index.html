@@ -42,12 +42,20 @@
             var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, false);
 */
-            var camera = new BABYLON.WebVRFreeCamera("Camera", new BABYLON.Vector3(0, 90, -50), scene, true);
-  camera.attachControl(canvas, true);
-scene.activeCamera = camera;
-camera.applyGravity = true;
- camera.position.y = -1;
-        
+           var camera = new BABYLON.VRDeviceOrientationFreeCamera ("Camera", new BABYLON.Vector3 (-6.7, 1.2, -1.3), scene, 0);
+	
+	camera.attachControl(canvas, false);
+	camera.inputs.attached.VRDeviceOrientation.detachControl(canvas);
+	var onOrientationEvent = function(evt) {
+        this._alpha = (+evt.alpha | 0) + 45;
+        this._beta = (+evt.beta | 0) + 45;
+        this._gamma = +evt.gamma | 0;
+        this._dirty = true;
+    }
+	
+	camera.inputs.attached.VRDeviceOrientation._deviceOrientationHandler = onOrientationEvent.bind(camera.inputs.attached.VRDeviceOrientation);
+	camera.inputs.attached.VRDeviceOrientation.attachControl(canvas);
+
             // The first parameter can be used to specify which mesh to import. Here we import all meshes
             BABYLON.SceneLoader.ImportMesh("", "scenes/", "cubo.babylon", scene, function (newMeshes) {
                 // Set the target of the camera to the first imported mesh
