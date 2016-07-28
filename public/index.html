@@ -372,10 +372,10 @@ var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 15, scene, false);
 	
 	
 
-if (window.DeviceOrientationEvent) {
+if (window.DeviceRotationRateEvent) {
  
   // Listen for the deviceorientation event and handle the raw data
-  window.addEventListener('deviceorientation', function(eventData) {
+  window.addEventListener('rotationRate', function(eventData) {
     // gamma is the left-to-right tilt in degrees, where right is positive
     var tiltLR = Math.floor(eventData.gamma) ;
 
