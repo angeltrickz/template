@@ -381,10 +381,10 @@ if (window.DeviceOrientationEvent) {
   // Listen for the deviceorientation event and handle the raw data
   window.addEventListener('devicemotion', function(eventData) {
     // gamma is the left-to-right tilt in degrees, where right is positive
-    var tiltLR = Math.floor(eventData.rotationRate.alpha) ;
+    var tiltLR = eventData.rotationRate.alpha ;
 
     // beta is the front-to-back tilt in degrees, where front is positive
-    var tiltFB = eventData.beta;
+    var tiltFB = eventData.rotationRate.beta;
 
     // alpha is the compass direction the device is facing in degrees
     var dir = eventData.alpha
