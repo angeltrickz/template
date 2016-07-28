@@ -354,7 +354,7 @@ zombies[i].lookAt(target.position);
 var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 15, scene, false);
 	outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 	outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
-	outputplane.position = new BABYLON.Vector3(0, 5, 0);
+	outputplane.position = new BABYLON.Vector3(0, 0, 0);
 	outputplane.scaling.y = 0.05;
 
 	var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
