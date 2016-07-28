@@ -414,6 +414,14 @@ function deviceOrientationHandler(lr,fb,dr){
 	if(fb<10){
 		freeCamera.position.x +=1;
 	};
+
+
+	if(lr>-80){
+		freeCamera.position.z -=1;
+	};
+	if(lr<80){
+		freeCamera.position.z +=1;
+	};
 	
 
 };
