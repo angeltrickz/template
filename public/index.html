@@ -26,6 +26,7 @@
         </style>
     </head>
 <body>
+<div id="datos"></div>
     <canvas id="renderCanvas"></canvas>
     <script>
 
@@ -354,8 +355,8 @@ zombies[i].lookAt(target.position);
 var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 15, scene, false);
 	outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 	outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
-	outputplane.position = new BABYLON.Vector3(0, 1, 0);
-	outputplane.scaling.y = 0.05;
+	outputplane.position = new BABYLON.Vector3(0, 0, 0);
+	outputplane.scaling.y = 0.4;
 
 	var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
 	outputplane.material.diffuseTexture = outputplaneTexture;
@@ -393,7 +394,14 @@ if (window.DeviceOrientationEvent) {
 };
 
 function deviceOrientationHandler(lr,fb,dr){
-	
+		var out = function(data) {
+		context2D.clearRect(0, 200, 512, 512);
+		outputplaneTexture.drawText(data, null, 380, "140px verdana", "white", null);
+	}
+
+	out(lr);
+
+	//document.getElementById("datos").innerHTML = lr;
 	
 
 };
@@ -409,12 +417,8 @@ window.addEventListener('devicemotion', function(event) {
   var rgamma = event.rotationRate.gamma;
 				
   var interval = event.interval;
-  	var out = function(data) {
-		context2D.clearRect(0, 200, 512, 512);
-		outputplaneTexture.drawText(data, null, 380, "50px verdana", "white", null);
-	}
 
-	out("rot: "+ralpha+" "+rbeta);
+  document.getElementById("datos").innerHTML = ralpha ;
 });
      
        
