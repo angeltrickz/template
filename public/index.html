@@ -26,9 +26,7 @@
         </style>
     </head>
 <body>
-<div id="rl"></div>
-<div id="fb"></div>
-<div id="dr"></div>
+<h1><div id="datos"></div></h1>
     <canvas id="renderCanvas"></canvas>
     <script>
 
@@ -403,26 +401,10 @@ function deviceOrientationHandler(lr,fb,dr){
 
 	out(lr);
 
-	document.getElementById("lr").innerHTML = lr;
-	document.getElementById("fb").innerHTML = fb;
-	document.getElementById("dr").innerHTML = dr;
+	document.getElementById("datos").innerHTML = lr;
 	
 
 };
-
-
-window.addEventListener('devicemotion', function(event) {
-  var x = event.acceleration.x;
-  var y = event.acceleration.y;
-  var z = event.acceleration.z;
-				
-  var ralpha = event.rotationRate.alpha;
-  var rbeta = event.rotationRate.beta;
-  var rgamma = event.rotationRate.gamma;
-				
-  var interval = event.interval;
-
-});
      
        
             // Move the light with the camera
