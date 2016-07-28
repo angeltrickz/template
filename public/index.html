@@ -385,13 +385,15 @@ function deviceOrientationHandler(lr,fb,dr){
 	outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
 	outputplane.material.backFaceCulling = false;
 
-	outputplaneTexture.drawText(lr, null, 140, "bold 14px verdana", "white", "#0000AA");
+	
 
 	cubo.rotation.x = lr;
 
 	var context2D = outputplaneTexture.getContext();
+context2D.clearRect(0, 200, 512, 512);
+	outputplaneTexture.drawText(lr, null, 140, "bold 14px verdana", "white", "#0000AA");
 	var out = function(data) {
-		context2D.clearRect(0, 200, 512, 512);
+		
 		outputplaneTexture.drawText("data", null, 380, "140px verdana", "white", null);
 	}
 
