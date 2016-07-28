@@ -408,10 +408,10 @@ function deviceOrientationHandler(lr,fb,dr){
 	document.getElementById("b").innerHTML = fb;
 	document.getElementById("c").innerHTML = dr;
 
-	if(fb<0){
+	if(fb>-10){
 		freeCamera.position.x -=1;
 	};
-	if(fb>0){
+	if(fb<10){
 		freeCamera.position.x +=1;
 	};
 	
