@@ -26,7 +26,10 @@
         </style>
     </head>
 <body>
-<h1><div id="datos"></div></h1>
+<h1><div id="a"></div></h1>
+<h1><div id="b"></div></h1>
+<h1><div id="c"></div></h1>
+
     <canvas id="renderCanvas"></canvas>
     <script>
 
@@ -401,7 +404,9 @@ function deviceOrientationHandler(lr,fb,dr){
 
 	out(lr);
 
-	document.getElementById("datos").innerHTML = lr;
+	document.getElementById("a").innerHTML = lr;
+	document.getElementById("b").innerHTML = fb;
+	document.getElementById("c").innerHTML = dr;
 	
 
 };
