@@ -135,13 +135,16 @@ if (window.DeviceOrientationEvent) {
     var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 30, new BABYLON.Vector3.Zero(), scene);
 
 	camera.setCameraRigMode(BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL,  { interaxialDistance: 0.0637});
-	camera.attachControl(canvas, true);
+	//camera.attachControl(canvas, true);
 
+scene.registerBeforeRender(function () {
+		camera.position.x += 1;
+		camera.rotation.y += 1;
+		camera.rotation.z += 1;
+	});
 function deviceOrientationHandler(lr,fb,dr){
 	scene.registerBeforeRender(function () {
-		camera.rotation.x = lr
-		camera.rotation.y = fb
-		camera.rotation.z = dr
+		
 	});
 
 };
@@ -362,18 +365,18 @@ zombies[i].lookAt(target.position);
                 
   ///invasion zombie///
 
-/*
+
 
             window.addEventListener("deviceorientation", moveBall);
 function moveBall(evt) {
     if (evt.alpha < 5 || evt.alpha > 355) {
         camera.position.z = evt.alpha;
-
+alert(evt.alpha);
 
     }
-}
+};
      
-     */   
+       
             // Move the light with the camera
             scene.registerBeforeRender(function () {
                 light.position = camera.position;
