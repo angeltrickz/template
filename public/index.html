@@ -111,25 +111,9 @@ plane.physicsImpostor = new BABYLON.PhysicsImpostor(plane, BABYLON.PhysicsImpost
             camera.attachControl(canvas, false);
 */
 
-if (window.DeviceOrientationEvent) {
- 
-  // Listen for the deviceorientation event and handle the raw data
-  window.addEventListener('deviceorientation', function(eventData) {
-    // gamma is the left-to-right tilt in degrees, where right is positive
-    var tiltLR = eventData.gamma;
 
-    // beta is the front-to-back tilt in degrees, where front is positive
-    var tiltFB = eventData.beta;
 
-    // alpha is the compass direction the device is facing in degrees
-    var dir = eventData.alpha
 
-    // call our orientation event handler
-    deviceOrientationHandler(tiltLR, tiltFB, dir);
-  }, false);
-} else {
-  console.log(err);
-}
 
 
     var camera = new BABYLON.ArcRotateCamera("Camera", -2, 1, 30, new BABYLON.Vector3.Zero(), scene);
@@ -142,12 +126,7 @@ scene.registerBeforeRender(function () {
 		camera.rotation.y += 1;
 		camera.rotation.z += 1;
 	});
-function deviceOrientationHandler(lr,fb,dr){
-	scene.registerBeforeRender(function () {
-		
-	});
 
-};
 
 
 /*
@@ -367,13 +346,31 @@ zombies[i].lookAt(target.position);
 
 
 
-            window.addEventListener("deviceorientation", moveBall);
-function moveBall(evt) {
-    if (evt.alpha < 5 || evt.alpha > 355) {
-        camera.position.z = evt.alpha;
-alert(evt.alpha);
+if (window.DeviceOrientationEvent) {
+ 
+  // Listen for the deviceorientation event and handle the raw data
+  window.addEventListener('deviceorientation', function(eventData) {
+    // gamma is the left-to-right tilt in degrees, where right is positive
+    var tiltLR = eventData.gamma;
 
-    }
+    // beta is the front-to-back tilt in degrees, where front is positive
+    var tiltFB = eventData.beta;
+
+    // alpha is the compass direction the device is facing in degrees
+    var dir = eventData.alpha
+
+    // call our orientation event handler
+    deviceOrientationHandler(tiltLR, tiltFB, dir);
+  }, false);
+} else {
+  console.log(err);
+};
+
+function deviceOrientationHandler(lr,fb,dr){
+	scene.registerBeforeRender(function () {
+		camera.position.x += 1;
+	});
+
 };
      
        
