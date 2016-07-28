@@ -390,8 +390,22 @@ if (window.DeviceOrientationEvent) {
     var dir = eventData.alpha
 
     // call our orientation event handler
-    deviceOrientationHandler(tiltLR, tiltFB, dir);
+    //deviceOrientationHandler(tiltLR, tiltFB, dir);
   }, false);
+
+
+  window.addEventListener('devicemotion', function(event) {
+  var x = event.acceleration.x;
+  var y = event.acceleration.y;
+  var z = event.acceleration.z;
+				
+  var ralpha = event.rotationRate.alpha;
+  var rbeta = event.rotationRate.beta;
+  var rgamma = event.rotationRate.gamma;
+				
+  var interval = event.interval;
+  deviceOrientationHandler(x, y, z);
+});
 } else {
   console.log(err);
 };
