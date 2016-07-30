@@ -68,6 +68,8 @@ materialSphere2.diffuseTexture = new BABYLON.VideoTexture("video",
 
 
 
+
+/*
 var groundMaterialz = new BABYLON.StandardMaterial("ground", scene);
     groundMaterialz.diffuseTexture = new BABYLON.Texture("textures/terre.png", scene);
 groundMaterialz.diffuseTexture.uScale = 100.0;
@@ -118,8 +120,10 @@ plane.physicsImpostor = new BABYLON.PhysicsImpostor(plane, BABYLON.PhysicsImpost
 
  var freeCamera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0.9, 7), scene);
 
+/*
  freeCamera.setCameraRigMode(BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL,  { interaxialDistance: 0.0637});
 
+*/
     freeCamera.rotation = new BABYLON.Vector3(0, Math.PI, 0);
  
     freeCamera.attachControl(canvas, true);
@@ -174,110 +178,10 @@ camera.inputs.attached.VRDeviceOrientation.attachControl(canvas);
     direction.normalize();
 
     //camera.position.addInPlace(direction);
+
 */
 
-var cubo;
-            // The first parameter can be used to specify which mesh to import. Here we import all meshes
-            BABYLON.SceneLoader.ImportMesh("", "scenes/", "cubo.babylon", scene, function (newMeshes) {
-            	cubo = newMeshes[0];
-                // Set the target of the camera to the first imported mesh
-                camera.target = newMeshes[0];
-            });
-
-
-        // Trees
-        BABYLON.SceneLoader.ImportMesh("", "", "mapa/arbol.babylon", scene, function (newMeshes) {
-            var arbolseco = newMeshes[0];
-            newMeshes[0].material.opacityTexture = null;
-            newMeshes[0].material.backFaceCulling = false;
-            newMeshes[0].isVisible = false;
-            newMeshes[0].position.y = ground.getHeightAtCoordinates(0, 0); // Getting height from ground object
-            
-            
-
-            shadowGenerator.getShadowMap().renderList.push(newMeshes[0]);
-            var range = 300;
-            var count = 30;
-            for (var index = 0; index < count; index++) {
-                var newInstance = newMeshes[0].createInstance("i" + index);
-                var x = range / 2 - Math.random() * range;
-                var z = range / 2 - Math.random() * range;
-
-                var y = ground.getHeightAtCoordinates(x, z); // Getting height from ground object
-
-                newInstance.position = new BABYLON.Vector3(x, y, z);
-                newInstance.physicsImpostor = new BABYLON.PhysicsImpostor(newInstance, BABYLON.PhysicsImpostor.BoxImpostor, {   mass: 500,
-  friction: 100,
-  restitution: 0 }, scene); 
-            newInstance.checkCollisions = true;
-            newInstance.collisionsEnabled = true;
-
-                newInstance.rotate(BABYLON.Axis.Y, Math.random() * Math.PI * 2, BABYLON.Space.WORLD);
-
-                var scale = 0.5 + Math.random() * 2;
-                newInstance.scaling.addInPlace(new BABYLON.Vector3(scale, scale, scale));
-
-                shadowGenerator.getShadowMap().renderList.push(newInstance);
-            }
-            shadowGenerator.getShadowMap().refreshRate = 0; // We need to compute it just once
-            shadowGenerator.usePoissonSampling = true;
-
-           
-        });
-
-         ///arbol2//
-
-            BABYLON.SceneLoader.ImportMesh("", "", "mapa/arbol.babylon", scene, function (newMeshes, particleSystems, skeletons) {
-   var arbol1 = newMeshes[0];
-
-});
-   // Shadows
-        var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-
-        // Trees
-        BABYLON.SceneLoader.ImportMesh("", "", "mapa/arbol2.babylon", scene, function (newMeshes) {
-            var arbolseco = newMeshes[0];
-            newMeshes[0].material.opacityTexture = null;
-            newMeshes[0].material.backFaceCulling = false;
-            newMeshes[0].isVisible = false;
-            newMeshes[0].position.y = ground.getHeightAtCoordinates(0, 0); // Getting height from ground object
-            
-            
-
-            shadowGenerator.getShadowMap().renderList.push(newMeshes[0]);
-            var range = 300;
-            var count = 30;
-            for (var index = 0; index < count; index++) {
-                var newInstance = newMeshes[0].createInstance("i" + index);
-                var x = range / 2 - Math.random() * range;
-                var z = range / 2 - Math.random() * range;
-
-                var y = ground.getHeightAtCoordinates(x, z); // Getting height from ground object
-
-                newInstance.position = new BABYLON.Vector3(x, y, z);
-                newInstance.physicsImpostor = new BABYLON.PhysicsImpostor(newInstance, BABYLON.PhysicsImpostor.BoxImpostor, {   mass: 500,
-  friction: 100,
-  restitution: 0 }, scene); 
-            newInstance.checkCollisions = true;
-            newInstance.collisionsEnabled = true;
-
-                newInstance.rotate(BABYLON.Axis.Y, Math.random() * Math.PI * 2, BABYLON.Space.WORLD);
-
-                var scale = 0.5 + Math.random() * 2;
-                newInstance.scaling.addInPlace(new BABYLON.Vector3(scale, scale, scale));
-
-                shadowGenerator.getShadowMap().renderList.push(newInstance);
-            }
-            shadowGenerator.getShadowMap().refreshRate = 0; // We need to compute it just once
-            shadowGenerator.usePoissonSampling = true;
-
-            // Collisions
-            freeCamera.checkCollisions = true;
-    freeCamera.applyGravity = true;
-    freeCamera.collisionsEnabled = true;
-        });
-        //arbol2//
-
+/*
         var target = freeCamera;
         ///invasion zombie///
       BABYLON.SceneLoader.ImportMesh("", "", "objetos/zombie.babylon", scene, function (newMeshes, particleSystems, skeletons) {
@@ -344,7 +248,7 @@ zombies[i].lookAt(target.position);
                     } ;
 };
 /*
-*/
+
                   
  
               
@@ -354,7 +258,9 @@ zombies[i].lookAt(target.position);
                 
   ///invasion zombie///
 
+*/
 
+/*
 var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 15, scene, false);
 	outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 	outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
@@ -375,7 +281,9 @@ var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 15, scene, false);
 
 	
 	
+*/
 
+/*
 if (window.DeviceOrientationEvent) {
  
   // Listen for the deviceorientation event and handle the raw data
@@ -421,6 +329,8 @@ if (lr >= -10 && lr <= -80) {
 	
 
 };
+
+*/
      
        
             // Move the light with the camera
